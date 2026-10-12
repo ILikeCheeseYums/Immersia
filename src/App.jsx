@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import StreetViewer from './components/StreetViewer';
 import { parseItem } from './utils/graph';
-import { getDemoTourImages } from './utils/demo';
 import FeatureCard from './components/FeatureCard';
 import { useDropzone } from 'react-dropzone';
 
@@ -94,18 +93,6 @@ export default function App() {
               <img src="/icons/upload-cloud.svg" alt="" className="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300 pointer-events-none" />
               Select Images or Drop Here
             </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setImages(getDemoTourImages());
-              setIsViewing(true);
-            }}
-            className="px-8 py-3.5 bg-[#20232a] hover:bg-[#2d323c] border border-white/15 hover:border-[#1a73e8]/60 transition-all rounded-full font-bold text-lg text-white cursor-pointer shadow-lg flex items-center gap-2"
-          >
-            <span>Launch Demo Tour</span>
           </button>
         </div>
       </div>
