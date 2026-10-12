@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useFullscreen, useToggle } from "react-use";
+import { Code } from "lucide-react";
 
 import { buildGraphFromNomenclature } from "../utils/graph";
+import EmbedModal from "./EmbedModal";
 
 export default function StreetViewer({ images = [], onExit }) {
   // Global Graph State
   const [graph, setGraph] = useState(() => buildGraphFromNomenclature(images));
+  const [isEmbedModalOpen, setIsEmbedModalOpen] = useState(false);
 
   // Current active viewport node identifier
   const [currId, setCurrId] = useState(graph.nodes[0]?.id);
@@ -340,15 +343,24 @@ export default function StreetViewer({ images = [], onExit }) {
         </div>
       )}
 
-      {/* Top-Right: Fullscreen toggler */}
-      <div className="absolute top-4 right-4 z-20 pointer-events-auto ui-button">
+      {/* Top-Right: Actions (Embed & Fullscreen) */}
+      <div className="absolute top-4 right-4 z-20 pointer-events-auto flex items-center gap-2 ui-button">
+        <button
+          onClick={() => setIsEmbedModalOpen(true)}
+          className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#20232a]/90 backdrop-blur-md text-[#f1f3f4] text-xs font-semibold cursor-pointer transition-all hover:bg-[#2d323c] hover:border-[#1a73e8]/60 border border-white/10 shadow-lg"
+          title="Embed as iframe on another website"
+        >
+          <Code className="w-4 h-4 text-[#8ab4f8]" />
+          <span>Embed / Export</span>
+        </button>
+
         <button
           onClick={() =>
             !document.fullscreenElement
               ? document.documentElement.requestFullscreen()
               : document.exitFullscreen()
           }
-          className="p-2.5 rounded-full bg-[#20232a]/90 backdrop-blur-md text-[#f1f3f4] cursor-pointer transition-colors hover:bg-[#2d323c] "
+          className="p-2.5 rounded-full bg-[#20232a]/90 backdrop-blur-md text-[#f1f3f4] cursor-pointer transition-colors hover:bg-[#2d323c] border border-white/10"
           title="Toggle Fullscreen"
         >
           {isFullscreen ? (
@@ -400,6 +412,14 @@ export default function StreetViewer({ images = [], onExit }) {
           </button>
         </div>
       </div>
+
+      {/* Embed Modal for standalone mini HTML & iframe export */}
+      <EmbedModal
+        isOpen={isEmbedModalOpen}
+        onClose={() => setIsEmbedModalOpen(false)}
+        graph={graph}
+        images={images}
+      />
     </div>
   );
 }

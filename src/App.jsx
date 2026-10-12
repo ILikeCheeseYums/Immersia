@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import StreetViewer from './components/StreetViewer';
 import { parseItem } from './utils/graph';
+import { getDemoTourImages } from './utils/demo';
 import FeatureCard from './components/FeatureCard';
 import { useDropzone } from 'react-dropzone';
 
@@ -15,6 +16,7 @@ export default function App() {
       const url = URL.createObjectURL(file);
       const parsed = parseItem(file.name);
       parsed.image = url;
+      parsed.file = file;
       return parsed;
     });
     
@@ -59,7 +61,7 @@ export default function App() {
         <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mx-auto">
         Stop imagining the place, Immerse in the experience. 
         A photo-based virtual tour builder for real-world experiences
-        <br />~By Team Git Init
+        <br />~By Team Get Init
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 pb-12 text-left">
@@ -83,15 +85,27 @@ export default function App() {
           />
         </div>
 
-        <div className="flex gap-4 justify-center pointer-events-auto">
+        <div className="flex flex-wrap gap-4 justify-center pointer-events-auto">
           <button 
             type="button"
-            className="group relative px-10 py-4 bg-[#1a73e8] hover:bg-[#1557b0] transition-all rounded-full font-bold text-xl"
+            className="group relative px-8 py-3.5 bg-[#1a73e8] hover:bg-[#1557b0] transition-all rounded-full font-bold text-lg cursor-pointer shadow-lg"
           >
             <span className="flex items-center gap-3">
               <img src="/icons/upload-cloud.svg" alt="" className="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300 pointer-events-none" />
               Select Images or Drop Here
             </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setImages(getDemoTourImages());
+              setIsViewing(true);
+            }}
+            className="px-8 py-3.5 bg-[#20232a] hover:bg-[#2d323c] border border-white/15 hover:border-[#1a73e8]/60 transition-all rounded-full font-bold text-lg text-white cursor-pointer shadow-lg flex items-center gap-2"
+          >
+            <span>Launch Demo Tour</span>
           </button>
         </div>
       </div>
