@@ -69,7 +69,7 @@ export default function StreetViewer({ images = [], onExit }) {
       return;
 
     // Trigger directional audio footstep
-    new Audio("/footstep.mp3").play();
+    new Audio("./footstep.mp3").play();
 
     // Reset view orientation & update React active state
     setPanoX(0);
@@ -324,7 +324,7 @@ export default function StreetViewer({ images = [], onExit }) {
             id="pano-badge"
             className="absolute top-4 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded-full bg-[#20232a]/90 backdrop-blur-md text-[11px] text-[#8ab4f8] font-medium pointer-events-none flex items-center gap-1.5 transition-opacity"
           >
-            <img src="/icons/target-blue.svg" alt="" className="w-3.5 h-3.5 pointer-events-none" />
+            <img src="./icons/target-blue.svg" alt="" className="w-3.5 h-3.5 pointer-events-none" />
             <span>360° Panorama</span>
           </div>
         )}
@@ -338,7 +338,7 @@ export default function StreetViewer({ images = [], onExit }) {
             className="p-2.5 rounded-full bg-[#20232a]/90 backdrop-blur-md text-[#f1f3f4] cursor-pointer transition-colors hover:bg-[#2d323c]"
             title="Exit Viewer"
           >
-            <img src="/icons/x.svg" alt="Exit" className="w-5 h-5 pointer-events-none" />
+            <img src="./icons/x.svg" alt="Exit" className="w-5 h-5 pointer-events-none" />
           </button>
         </div>
       )}
@@ -364,9 +364,9 @@ export default function StreetViewer({ images = [], onExit }) {
           title="Toggle Fullscreen"
         >
           {isFullscreen ? (
-            <img src="/icons/minimize.svg" alt="Minimize" className="w-4 h-4 pointer-events-none" />
+            <img src="./icons/minimize.svg" alt="Minimize" className="w-4 h-4 pointer-events-none" />
           ) : (
-            <img src="/icons/maximize.svg" alt="Maximize" className="w-4 h-4 pointer-events-none" />
+            <img src="./icons/maximize.svg" alt="Maximize" className="w-4 h-4 pointer-events-none" />
           )}
         </button>
       </div>
@@ -380,9 +380,9 @@ export default function StreetViewer({ images = [], onExit }) {
             title="Toggle Fit (No Crop) / Fill Screen"
           >
             {isFillMode ? (
-              <img src="/icons/shrink-blue.svg" alt="Shrink" className="w-4 h-4 pointer-events-none" />
+              <img src="./icons/shrink-blue.svg" alt="Shrink" className="w-4 h-4 pointer-events-none" />
             ) : (
-              <img src="/icons/expand.svg" alt="Expand" className="w-4 h-4 pointer-events-none" />
+              <img src="./icons/expand.svg" alt="Expand" className="w-4 h-4 pointer-events-none" />
             )}
           </button>
           <button
@@ -390,14 +390,14 @@ export default function StreetViewer({ images = [], onExit }) {
             className="w-10 h-10 flex items-center justify-center text-[#f1f3f4] transition-colors hover:bg-white/15 hover:text-white active:bg-[#1a73e8]"
             title="Zoom In (+)"
           >
-            <img src="/icons/zoom-in.svg" alt="Zoom In" className="w-5 h-5 pointer-events-none" />
+            <img src="./icons/zoom-in.svg" alt="Zoom In" className="w-5 h-5 pointer-events-none" />
           </button>
           <button
             onClick={() => setZoom((z) => Math.max(0.95, z - 0.2))}
             className="w-10 h-10 flex items-center justify-center text-[#f1f3f4] transition-colors hover:bg-white/15 hover:text-white active:bg-[#1a73e8]"
             title="Zoom Out (-)"
           >
-            <img src="/icons/zoom-out.svg" alt="Zoom Out" className="w-5 h-5 pointer-events-none" />
+            <img src="./icons/zoom-out.svg" alt="Zoom Out" className="w-5 h-5 pointer-events-none" />
           </button>
           <button
             onClick={() => {
@@ -408,7 +408,7 @@ export default function StreetViewer({ images = [], onExit }) {
             className="w-10 h-10 flex items-center justify-center text-[#f1f3f4] transition-colors hover:bg-white/15 hover:text-white active:bg-[#1a73e8]"
             title="Reset View"
           >
-            <img src="/icons/target.svg" alt="Reset View" className="w-4 h-4 pointer-events-none" />
+            <img src="./icons/target.svg" alt="Reset View" className="w-4 h-4 pointer-events-none" />
           </button>
         </div>
       </div>
